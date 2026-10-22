@@ -44,5 +44,7 @@ public class Main {
         for (Book book : library.getAvailableBooks()) {
             System.out.println("  " + book);
         }
+
+        System.out.println("Новая версия проекта!");
     }
 }
