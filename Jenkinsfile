@@ -4,22 +4,22 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'mvn compile'
+                sh 'mvn compile'
             }
         }
         stage('Test') {
             steps {
-                bat 'mvn test'
+                sh 'mvn test'
             }
         }
         stage('Package') {
             steps {
-                bat 'mvn package -DskipTests'
+                sh 'mvn package -DskipTests'
             }
         }
         stage('Dependencies') {
             steps {
-                bat 'mvn dependency:tree'
+                sh 'mvn dependency:tree'
             }
         }
     }
