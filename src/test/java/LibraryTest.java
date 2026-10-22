@@ -33,7 +33,7 @@ public class LibraryTest {
 
         assertTrue(book.isBorrowed());
         assertTrue(ivan.getBooks().contains(book));
-        assertEquals(99, ivan.getBooks().size());
+        assertEquals(1, ivan.getBooks().size());
     }
 
     //нельзя взять, которая уже у него
