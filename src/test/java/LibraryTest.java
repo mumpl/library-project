@@ -57,4 +57,15 @@ public class LibraryTest {
         assertEquals(0, petr.getBooks().size());
         assertTrue(book.isBorrowed());
     }
+
+    // Тест: нельзя вернуть книгу, которую не брали
+    @Test
+    void testCannotReturnNotBorrowedBook() {
+        library.returnBook("1", ivan);
+
+        // Книга остаётся доступной, её нет ни у кого
+        assertFalse(book.isBorrowed());
+        assertFalse(ivan.getBooks().contains(book));
+        assertEquals(0, ivan.getBooks().size());
+    }
 }
