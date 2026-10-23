@@ -42,7 +42,7 @@ public class LibraryTest {
         library.borrowBook("1", ivan);
         library.borrowBook("1", ivan);
 
-        assertEquals(99, ivan.getBooks().size());
+        assertEquals(1, ivan.getBooks().size());
         assertTrue(book.isBorrowed());
     }
 
