@@ -1,14 +1,18 @@
 package service;
+
 import model.Book;
 import model.Reader;
 import repository.BookRepository;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Library {
+    private static final Logger log = LoggerFactory.getLogger(Library.class);
     private BookRepository repository;
 
-    public Library(BookRepository repository) {  // Dependency Injection
+    public Library(BookRepository repository) {
         this.repository = repository;
     }
 
@@ -16,38 +20,39 @@ public class Library {
         Book book = repository.findById(bookId);
 
         if (book == null) {
-            System.out.println("Книга не найдена");
+            log.error("Книга с ID {} не найдена", bookId);
             return;
         }
 
+        // ИНДИВИДУАЛЬНОЕ ЗАДАНИЕ: проверка, что книга не выдана
         if (book.isBorrowed()) {
-            System.out.println("ОШИБКА: Книга '" + book.getTitle() + "' уже выдана!");
+            log.warn("ОШИБКА: Книга '{}' уже выдана!", book.getTitle());
             return;
         }
 
         book.setBorrowed(true);
         reader.addBook(book);
         repository.update(book);
-        System.out.println("Книга '" + book.getTitle() + "' выдана " + reader.getName());
+        log.info("Книга '{}' выдана {}", book.getTitle(), reader.getName());
     }
 
     public void returnBook(String bookId, Reader reader) {
         Book book = repository.findById(bookId);
 
         if (book == null) {
-            System.out.println("Книга не найдена");
+            log.error("Книга с ID {} не найдена", bookId);
             return;
         }
 
         if (!book.isBorrowed()) {
-            System.out.println("Книга и так в библиотеке");
+            log.warn("Книга '{}' и так в библиотеке", book.getTitle());
             return;
         }
 
         book.setBorrowed(false);
         reader.removeBook(book);
         repository.update(book);
-        System.out.println("Книга '" + book.getTitle() + "' возвращена");
+        log.info("Книга '{}' возвращена", book.getTitle());
     }
 
     public List<Book> getAvailableBooks() {

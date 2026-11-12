@@ -2,13 +2,17 @@ import model.Book;
 import model.Reader;
 import repository.InMemoryBookRepository;
 import service.Library;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
-        System.out.println("Библиотека\n");
+        log.info("Библиотека запущена\n");
 
         InMemoryBookRepository repository = new InMemoryBookRepository();
-        Library library = new Library(repository);  // DI
+        Library library = new Library(repository);
 
         Book book1 = new Book("1", "Война и мир", "Толстой");
         Book book2 = new Book("2", "Преступление и наказание", "Достоевский");
@@ -17,34 +21,34 @@ public class Main {
         library.addBook(book1);
         library.addBook(book2);
         library.addBook(book3);
-        System.out.println("Добавлено 3 книги\n");
+        log.info("Добавлено 3 книги\n");
 
         Reader ivan = new Reader("R1", "Иван");
         Reader petr = new Reader("R2", "Петр");
 
-        System.out.println("Доступные книги:");
+        log.info("Доступные книги:");
         for (Book book : library.getAvailableBooks()) {
-            System.out.println("  " + book);
+            log.info("  {}", book);
         }
-        System.out.println();
+        log.info("");
 
-        System.out.println("Иван берет 'Война и мир'");
+        log.info("Иван берет 'Война и мир'");
         library.borrowBook("1", ivan);
-        System.out.println();
+        log.info("");
 
-        System.out.println("Петр пытается взять 'Война и мир'");
+        log.info("Петр пытается взять 'Война и мир'");
         library.borrowBook("1", petr);
-        System.out.println();
+        log.info("");
 
-        System.out.println("Иван возвращает 'Война и мир'");
+        log.info("Иван возвращает 'Война и мир'");
         library.returnBook("1", ivan);
-        System.out.println();
+        log.info("");
 
-        System.out.println("Доступные книги после возврата:");
+        log.info("Доступные книги после возврата:");
         for (Book book : library.getAvailableBooks()) {
-            System.out.println("  " + book);
+            log.info("  {}", book);
         }
 
-        System.out.println("Новая версия проекта!");
+        log.info("Новая версия проекта!");
     }
 }
