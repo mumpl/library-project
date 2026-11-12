@@ -50,5 +50,7 @@ public class Main {
         }
 
         log.info("Новая версия проекта!");
+
+        System.out.println("test");
     }
 }
