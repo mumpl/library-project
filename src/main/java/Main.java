@@ -32,7 +32,7 @@ public class Main {
         }
         log.info("");
 
-        log.info("Иван берет 'Война и мир'");
+        log.info("Ваня берет 'Война и мир'");
         library.borrowBook("1", ivan);
         log.info("");
 
@@ -40,7 +40,7 @@ public class Main {
         library.borrowBook("1", petr);
         log.info("");
 
-        log.info("Иван возвращает 'Война и мир'");
+        log.info("Ваня возвращает 'Война и мир'");
         library.returnBook("1", ivan);
         log.info("");
 
