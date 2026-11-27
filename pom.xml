@@ -42,6 +42,21 @@
             <artifactId>logback-classic</artifactId>
             <version>1.4.11</version>
         </dependency>
+
+        <!-- Micrometer: создание и управление метриками -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-core</artifactId>
+            <version>1.13.6</version>
+        </dependency>
+
+        <!-- Prometheus Registry: экспорт метрик для Prometheus -->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+            <version>1.13.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>
