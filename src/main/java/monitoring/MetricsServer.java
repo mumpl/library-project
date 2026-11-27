@@ -3,12 +3,18 @@ package monitoring;
 
 import com.sun.net.httpserver.HttpServer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 
 public class MetricsServer {
+
+    private static final Logger log =
+            LoggerFactory.getLogger(MetricsServer.class);
 
     private final HttpServer server;
 
@@ -36,7 +42,7 @@ public class MetricsServer {
 
     public void start() {
         server.start();
-        System.out.println(
+        log.info(
                 "Metrics endpoint: http://localhost:8080/metrics"
         );
     }
@@ -45,4 +51,3 @@ public class MetricsServer {
         server.stop(0);
     }
 }
-

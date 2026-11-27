@@ -58,11 +58,11 @@ public class Main {
 
             while (running) {
 
-                System.out.println("\n===== МЕНЮ БИБЛИОТЕКИ =====");
-                System.out.println("1. Выдать книгу");
-                System.out.println("2. Вернуть книгу");
-                System.out.println("3. Попытаться выдать занятую книгу");
-                System.out.println("0. Завершить работу");
+                log.info("\n===== МЕНЮ БИБЛИОТЕКИ =====");
+                log.info("1. Выдать книгу");
+                log.info("2. Вернуть книгу");
+                log.info("3. Попытаться выдать занятую книгу");
+                log.info("0. Завершить работу");
                 System.out.print("Выберите действие: ");
 
                 String choice = scanner.nextLine().trim();
@@ -83,7 +83,7 @@ public class Main {
                                 || borrowReader.equals("2")) {
                             library.borrowBook(borrowId, borrower);
                         } else {
-                            System.out.println("Неизвестный читатель");
+                            log.info("Неизвестный читатель");
                         }
                         break;
 
@@ -101,12 +101,12 @@ public class Main {
                                 || returnReader.equals("2")) {
                             library.returnBook(returnId, returner);
                         } else {
-                            System.out.println("Неизвестный читатель");
+                            log.info("Неизвестный читатель");
                         }
                         break;
 
                     case "3":
-                        System.out.println(
+                        log.info(
                                 "Сначала выберите книгу, которая уже выдана."
                         );
                         System.out.print("Введите ID занятой книги: ");
@@ -120,10 +120,10 @@ public class Main {
                         break;
 
                     default:
-                        System.out.println("Неверный пункт меню");
+                        log.info("Неверный пункт меню");
                 }
 
-                System.out.println(
+                log.info(
                         "\nМетрики: http://localhost:8080/metrics"
                 );
             }
